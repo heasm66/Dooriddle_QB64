@@ -17,6 +17,9 @@
 '  Fixed spelling on a couple of places
 '  Added "" around some of the data in DATA-tables
 '  HIGHWAY always have DESCRIBEFLAG set to 1
+'  Moved BREAD to CAR instead of FARM HOUSE at start of game (as in game https://archive.org/details/TheHangtownTrilogy4amCrack)
+'  DOLLAR is revealed immediately when fifth BOTTLE is dropped
+'  Changed so that the filled GAS-CAN has to be returned to CAR and CAR started to win game
 
 ' QB64 don't allow global variables to be defined inside subroutines,
 ' instead they are definied in the main module as shared and that then
@@ -231,13 +234,13 @@ Sub OTHERS
     Let ROOMOBJECT$(11, 3) = "STOVE*"
     Let ROOMOBJECT$(11, 4) = "POT*"
     Let ROOMOBJECT$(11, 5) = "GAS-CAN"
-    Let ROOMOBJECT$(11, 6) = "BREAD"
     Let ROOMOBJECT$(18, 1) = "SIGN*"
     Let ROOMOBJECT$(18, 2) = "EMPTYDOLLAR"
     Let ROOMOBJECT$(19, 1) = "SIGN*"
     Let ROOMOBJECT$(20, 1) = "SIGN*"
-    Let ROOMOBJECT$(21, 1) = "SIGN*"
-    Let ROOMOBJECT$(21, 2) = "EMPTYFLARE"
+    Let ROOMOBJECT$(21, 1) = "BREAD"
+    Let ROOMOBJECT$(21, 2) = "SIGN*"
+    Let ROOMOBJECT$(21, 3) = "EMPTYFLARE"
 
     Read CONVERTNUM
     ReDim OBJ$(CONVERTNUM), OBJ2$(CONVERTNUM)
@@ -305,6 +308,11 @@ Sub DESCRIBE
     If MOVEMENTTABLE(ROOM, 6) <> 0 Then Print "DOWN ";
     Print
     _Delay 0.3
+
+    'PUT DOLLAR IN 18 IF 5 BOTTLES ARE PRESENT
+    IF ROOM=18 AND FNFIVEBOTTLES=1 AND FLAG(12)=0 THEN _
+       ROOMOBJECT$(18,2)="DOLLAR":FLAG(12)=1
+
     Print "The noticeable objects are: ";
     COUNTER = 0
     For I = 1 To 15
@@ -324,11 +332,6 @@ Sub DESCRIBE
     If COUNTER = 0 Then Print "nothing at all."
     Print
     _Delay 0.3
-
-
-    'PUT DOLLAR IN 18 IF 5 BOTTLES ARE PRESENT
-    IF ROOM=18 AND FNFIVEBOTTLES=1 AND FLAG(12)=0 THEN _
-       ROOMOBJECT$(18,2)="DOLLAR":FLAG(12)=1
 
     IF ROOM=2 AND FLAG(2)=0 THEN PRINT "The narrow streem is too deep to cross":_
         FLAG(14)=1:ROOM=4:EXIT SUB
@@ -638,7 +641,7 @@ Sub EVALUATE
                PRINT "With style and panache."
             IF ROOM=20 THEN _
                PRINT "DROP a DOLLAR and FILL your GAS-CAN with":_
-               PRINT "a gallon of gas to win the game."
+               PRINT "a gallon of gas."
             IF ROOM=21 THEN _
                PRINT "An object in this car,":_
                PRINT "Will help you with your chores;":_
@@ -711,10 +714,8 @@ Sub EVALUATE
             If FNPRESENT = 0 Then Print "PUT GAS-CAN here": Exit Select
         OBJECT$="DOLLAR":IF FNPRESENT=0 THEN PRINT " PUT DOLLAR  here":_
            EXIT SELECT
-        PRINT "With the gas, you are able to drive home,":_
-           PRINT "Happy in the knowledge that you are awesome!":_
-           PRINT "You've won FARMTOWN; now on to HANGTOWN!":_
-           ROOMOBJECT$(20,ITEMNUMBER)="EMPTY":FLAG(1)=1:_
+        PRINT "The GAS-CAN is now full.":_
+           ROOMOBJECT$(20,ITEMNUMBER)="EMPTY":_
            FLAG(13)=1:EXIT SELECT
         Case "START", "DRIVE"
             If OBJECT$ <> "CAR" Then Print "Try  DRIVE CAR ": Exit Select
@@ -722,7 +723,6 @@ Sub EVALUATE
             PRINT "PUT the GAS-CAN in the car when it is full":EXIT SELECT
          PRINT "As you drive home, you congratulate yourself on winning":_
             PRINT "the FARMTOWN ADVENTURE!  GOOD WORK!!":FLAG(1)=1:EXIT SELECT
-
         Case "REVEAL"
         IF OBJECT$="PEARS" AND FLAG(7)=0 THEN PRINT "OK":_
            ROOMOBJECT$(6,4)="PEARS":FLAG(7)=1:EXIT SELECT
@@ -801,8 +801,8 @@ Sub CLOSING
     Shared FLAG(), TURNNUMBER, ANSWER$(), STRT
     Print
     IF FLAG(1)= 1 THEN CLS:PRINT:PRINT:_
-    PRINT "With the gas, you fill the tank and drive on!":_
-    PRINT "You have conquered a most difficult adventure!  Good work!!"
+         PRINT "As you drive home, you congratulate yourself on winning":_
+         Print "the FARMTOWN ADVENTURE!  GOOD WORK!!"
     For I = 1 To 6: Print: Next I
     Input "Be sure that your disk is in the drive and press ENTER"; DUMMY$
 
