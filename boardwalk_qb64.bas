@@ -23,6 +23,7 @@
 '  Added "" around some of the data in DATA-tables
 '  Extended DIMensioning of FLAG,CLUE$ & WURD$ to 33
 '  Extended DIMensioning of ANSWER$ to 305
+'  Moved revealing of SCUBA and WETSUIT until after LOCKER is opened 2nd time
 
 ' QB64 don't allow global variables to be defined inside subroutines,
 ' instead they are definied in the main module as shared and that then
@@ -842,8 +843,8 @@ Sub EVALUATE
           "Get the key first.":EXIT SELECT
             If ROOM <> 15 Then Print "Not here": Exit Select
             If FLAG(9) = 1 Then Print "Done that.": Exit Select
-            Let FLAG(9) = 1: Let ROOMOBJECT$(ROOM, 2) = "SCUBA"
-            Let ROOMOBJECT$(ROOM, 3) = "WETSUIT"
+            Let FLAG(9) = 1: 'Let ROOMOBJECT$(ROOM, 2) = "SCUBA"
+            'Let ROOMOBJECT$(ROOM, 3) = "WETSUIT"
          LET INVENTORY$(ITEMNUMBER)="EMPTY":PRINT _
           "You see a WETSUIT and SCUBA in the LOCKER.  The KEY is stuck.":_
           _DELAY 0.3:PRINT "Oh great, the door just slammed shut locking.":_
@@ -1011,7 +1012,10 @@ Sub EVALUATE
             TRYNUMB = TRYNUMB + 1
             If COMBO$ = OBJECT$ Then
                 Let FLAG(13) = 0
-                Print "The door swings gently open.  Andrea says --well done": Exit Select
+                Print "The door swings gently open.  Andrea says --well done"
+                Let ROOMOBJECT$(ROOM, 2) = "SCUBA"
+                Let ROOMOBJECT$(ROOM, 3) = "WETSUIT"
+                Exit Select
             End If
             HITS = 0
             For I = 1 To 5
