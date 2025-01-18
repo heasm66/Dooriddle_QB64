@@ -1,3 +1,5 @@
+$Resize:stretch			' QB64 - Allow window to be resized
+
 'MODULE 0 MAIN    ******HANGTOWN******  10-3-90
 'MULTIPLE REVISIONS ON 1-25-91
 'GOLD HINT BURN HINT KEY HINT REVEAL HINT RESTORE 30 6MAR92
