@@ -1,4 +1,5 @@
-$Resize:stretch			' QB64 - Allow window to be resized
+' QB64 - Meta-command that allows window to be resized
+$Resize:Stretch
 
 'MODULE 0 MAIN    ******HANGTOWN******  10-3-90
 'MULTIPLE REVISIONS ON 1-25-91
@@ -876,4 +877,3 @@ Sub CLOSING
 End Sub
 
 'END OF PROGRAM
-
