@@ -1,3 +1,6 @@
+' QB64 - Meta-command that allows window to be resized
+$Resize:Stretch
+
 'MODULE 0 MAIN    ******FARMTOWN*******9-2-90
 'GAMEDTA.BAS CHANGED TO FARMSAV.BAS ON 1-24-91
 'ALSO FIXED ENDING WITH WIN NO MATTER WHETHER
