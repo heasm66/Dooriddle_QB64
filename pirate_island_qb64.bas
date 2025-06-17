@@ -1,3 +1,6 @@
+' QB64 - Meta-command that allows window to be resized
+$Resize:Stretch
+
 'MODULE 0 MAIN  ***PIRATE 8-31-90***
 'CHANGED GAMEDTA.BAS TO PIRESAV.BAS ON 1-24-91
 'GO DOWNSTAIRS FROM MAIN DECK 6MAR92
@@ -755,6 +758,4 @@ Sub CLOSING
 End Sub
 
 
-'END OF PROGRAM
-
-
+'END OF PROGRAM
