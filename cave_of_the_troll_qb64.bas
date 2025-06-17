@@ -1,3 +1,6 @@
+' QB64 - Meta-command that allows window to be resized
+$Resize:Stretch
+
 'MODULE 0 MAIN    ******TROLL******8-31-90
 'REVISED 1-24-91 TO ADD NICKLE-NICKEL! AND CONVERTNUM
 'AND TO CHANGE GAMEDTA.BAS TO TROLSAV.BAS
@@ -594,4 +597,3 @@ Sub CLOSING
 End Sub
 
 'END OF PROGRAM
-
