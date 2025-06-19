@@ -1,3 +1,6 @@
+' QB64 - Meta-command that allows window to be resized
+$Resize:Stretch
+
 'MODULE 0 MAIN    ******TOWNHOUSE*******1-24-91 2-3-94
 'CHANGED FROM 7-9-90 VERSION TO ADD LOGON AND CHANGE NAME OF
 'THE SAVE GAME FILE AND ADD VARIABLE CONVERTNUM TO KEEP TRACK
@@ -680,4 +683,3 @@ Sub CLOSING
 End Sub
 
 'END OF PROGRAM
-
