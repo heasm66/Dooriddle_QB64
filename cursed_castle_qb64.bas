@@ -1,3 +1,6 @@
+' QB64 - Meta-command that allows window to be resized
+$Resize:Stretch
+
 'MODULE 0 MAIN    ******CURSED CASTLE******9-2-90
 'CHANGED GAMEDTA.BAS TO CURSAV.BAS ON 1-24-91
 'CHANGED TURNNUMBER TO GYNTURN FOR GIANT TURNS 18FEB92
@@ -683,4 +686,3 @@ Sub CLOSING
 End Sub
 
 'END OF PROGRAM
-
