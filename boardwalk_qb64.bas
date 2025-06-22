@@ -1,3 +1,6 @@
+' QB64 - Meta-command that allows window to be resized
+$Resize:Stretch
+
 'MODULE 0 MAIN    ******BOARDWALK******10-17-95
 'CONVERTED FROM CURSED (SEE NEXT 4 REMS)
 'CHANGED GAMEDTA.BAS TO CURSAV.BAS ON 1-24-91
@@ -1100,4 +1103,3 @@ Sub CLOSING
 End Sub
 
 'END OF PROGRAM
-
